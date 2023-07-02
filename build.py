@@ -27,7 +27,6 @@ for file_ext in [
         mkdir(file_ext)
     except:
         pass
-    # for file_ext in ["png", ]:
     run_command(f"{build_str} -o {file_ext}/propeller.{file_ext}")
     for parameter_set in parameter_sets:
         run_command(
