@@ -1,4 +1,5 @@
 from subprocess import run
+from os import mkdir
 from json import load
 from shlex import split
 
@@ -22,9 +23,13 @@ for file_ext in [
     "png",
     "stl",
 ]:
+    try:
+        mkdir(file_ext)
+    except:
+        pass
     # for file_ext in ["png", ]:
-    run_command(f"{build_str} -o propeller.{file_ext}")
+    run_command(f"{build_str} -o {file_ext}/propeller.{file_ext}")
     for parameter_set in parameter_sets:
         run_command(
-            f"{build_str} -o propeller_{parameter_set}.{file_ext} -p {CONFIG_FILE} -P {parameter_set}"
+            f"{build_str} -o {file_ext}/propeller_{parameter_set}.{file_ext} -p {CONFIG_FILE} -P {parameter_set}"
         )
